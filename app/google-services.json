@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "76137061833",
+    "firebase_url": "https://mymovie-e6eb4.firebaseio.com",
+    "project_id": "mymovie-e6eb4",
+    "storage_bucket": "mymovie-e6eb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76137061833:android:71a1c0ca6ffe16b75c5c18",
+        "android_client_info": {
+          "package_name": "com.bimal.mymovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76137061833-r00okb0losv85dtsdcl0it493d8bb643.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPMKPNAafFRa8FQeT7mbI9dov_Dktlxxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76137061833-r00okb0losv85dtsdcl0it493d8bb643.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
