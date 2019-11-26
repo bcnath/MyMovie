@@ -1,4 +1,4 @@
-package com.bimal.mymovie;
+package com.bimal.mymovie.slider;
 
 public class Slide {
     private int Image;

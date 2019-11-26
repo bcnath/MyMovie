@@ -1,4 +1,4 @@
-package com.bimal.mymovie;
+package com.bimal.mymovie.slider;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.bimal.mymovie.R;
 
 import java.util.List;
 

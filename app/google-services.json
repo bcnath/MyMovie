@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "76137061833-nrlmdi03b83vc1f1gghsevk7mghbtt78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bimal.mymovie",
+            "certificate_hash": "b3c7576fbb69329b946fda8b84b4eda9080f4f7d"
+          }
+        },
+        {
           "client_id": "76137061833-r00okb0losv85dtsdcl0it493d8bb643.apps.googleusercontent.com",
           "client_type": 3
         }
