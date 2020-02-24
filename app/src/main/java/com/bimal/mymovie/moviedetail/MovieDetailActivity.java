@@ -1,40 +1,23 @@
 package com.bimal.mymovie.moviedetail;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bimal.mymovie.R;
-import com.bimal.mymovie.homepage.MainActivity;
-import com.bimal.mymovie.homepage.Movie;
-import com.bimal.mymovie.moviedetail.Series;
-import com.bimal.mymovie.moviedetail.SeriesAdapter;
-import com.bimal.mymovie.moviedetail.SeriesItemClickListener;
 import com.bimal.mymovie.player.MoviePlayerActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class MovieDetailActivity extends AppCompatActivity implements SeriesItemClickListener {
 
@@ -48,8 +31,6 @@ public class MovieDetailActivity extends AppCompatActivity implements SeriesItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-
-        play_fab=findViewById(R.id.play_fab);
 
 
         String movieTitle=getIntent().getExtras().getString("title");
@@ -75,45 +56,19 @@ public class MovieDetailActivity extends AppCompatActivity implements SeriesItem
         tv_description=findViewById(R.id.detail_movie_desc);
         tv_description.setText(movieDesc);
         //setup animation
-        play_fab.setAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_animation));
 
-
-        //Series RecyclerView
-        SeriesRv=findViewById(R.id.Rv_series);
-        List<Series> lstSeries=new ArrayList<>();
-
-        reference= FirebaseDatabase.getInstance().getReference().child("season");
-        reference.addValueEventListener(new ValueEventListener() {
+        String movieLink;
+        movieLink=getIntent().getExtras().getString("streamlink");
+        play_fab=findViewById(R.id.play_fab);
+        play_fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String episodeno = ds.getKey();
-                    String poster = ds.child("poster").getValue(String.class);
-                    String streamlink=ds.child("streamlink").getValue(String.class);
-                    Series series=new Series(episodeno,poster,streamlink);
-                    lstSeries.add(series);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MovieDetailActivity.this,"Oopsss... Something went wrong",Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                Intent i=new Intent(MovieDetailActivity.this,MoviePlayerActivity.class);
+                startActivity(i);
 
             }
         });
-
-
-
-        /*lstSeries.add(new Series(R.drawable.avatarslider,"Episode 1"));
-        lstSeries.add(new Series(R.drawable.avatarslider,"Episode 1"));
-        lstSeries.add(new Series(R.drawable.avatarslider,"Episode 1"));
-        lstSeries.add(new Series(R.drawable.avatarslider,"Episode 1"));
-        lstSeries.add(new Series(R.drawable.avatarslider,"Episode 1"));*/
-
-        SeriesAdapter seriesAdapter=new SeriesAdapter(this,lstSeries,this);
-        SeriesRv.setAdapter(seriesAdapter);
-        SeriesRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        play_fab.setAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_animation));
 
 
 
@@ -140,21 +95,6 @@ public class MovieDetailActivity extends AppCompatActivity implements SeriesItem
 
         //Toast.makeText(this,"Item clicked:" + movie.getTitle(),Toast.LENGTH_LONG).show();
     }
-
-
-
-
-
-
-
-
-
-    /*@Override
-    public void onClick(View view) {
-
-        Intent i = new Intent(this, MoviePlayerActivity.class);
-            startActivity(i);
-    }*/
 
 
 }
